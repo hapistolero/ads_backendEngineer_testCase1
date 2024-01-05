@@ -14,16 +14,23 @@ class KaryawanHandler{
   }
   async getDataKaryawanHandler (req,res){
     try {
-      const{sortBy} = req.query
-      console.log(sortBy)
+      const{sortBy,order} = req.query
+      console.log(order)
 
       let fieldName
-      if(sortBy ==='Tanggal Lahir'|| sortBy==='Nama'){
+      let ordering = order ==='DESC' ? 'DESC' : 'ASC'
+      
+      if(sortBy ==='Tanggal Lahir'|| sortBy==='Nama' ){
         fieldName = sortBy
+        
       }else{
         fieldName = 'Nomor Induk'
       }
-      const allKaryawan = await this._karyawan.getAllKaryawan(fieldName)
+
+      
+      console.log(ordering)
+
+      const allKaryawan = await this._karyawan.getAllKaryawan(fieldName,ordering)
       res.status(200).json({
         status:'success',
         karyawan:allKaryawan})

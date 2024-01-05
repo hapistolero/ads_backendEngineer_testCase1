@@ -16,7 +16,7 @@ class KaryawanRepository {
     this._sequelize.sync()
   }
 
-  async getAllKaryawan(fieldName) {
+  async getAllKaryawan(fieldName,ordering) {
 
     try {
       
@@ -25,7 +25,7 @@ class KaryawanRepository {
       // eslint-disable-next-line no-console
       console.log('Connection has been established successfully.')
       const allKaryawan = await this._Karyawan.findAll({
-        order:[[fieldName,'ASC']]
+        order:[[fieldName, `${ordering}`]]
       })
       const formattedKaryawan = allKaryawan.map((karyawan)=>({
         "No":karyawan["No"],

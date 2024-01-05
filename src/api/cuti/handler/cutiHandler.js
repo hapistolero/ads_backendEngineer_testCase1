@@ -15,16 +15,17 @@ class CutiHandler{
 
   async getCutiDataHandler(req,res){
     try {
-      const{sortBy} = req.query
+      const{sortBy,order} = req.query
 
       let fieldName
+      let ordering = order ==='DESC' ? 'DESC' : 'ASC'
       if(sortBy ==='Tanggal Cuti'){
         fieldName = sortBy
       }else{
         fieldName = 'Nomor Induk'
       }
 
-      const allCutiData = await this._cuti.getAllCuti(fieldName)
+      const allCutiData = await this._cuti.getAllCuti(fieldName,ordering)
 
       res.status(200).json(
         {

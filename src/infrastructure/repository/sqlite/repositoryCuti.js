@@ -15,9 +15,9 @@ class CutiRepository {
         
   }
 
-  async getAllCuti(fieldName){
+  async getAllCuti(fieldName,ordering){
     const allCuti = await this._Cuti.findAll({
-      order:[[fieldName,'ASC']]
+      order:[[fieldName,`${ordering}`]]
     })
 
     const formattedDataCuti = allCuti.map((c)=>({
