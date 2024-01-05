@@ -28,6 +28,7 @@ class CutiHandler{
 
       res.status(200).json(
         {
+          status:"success",
           cuti:allCutiData
         }
       )
@@ -73,7 +74,9 @@ class CutiHandler{
         nomor_induk, tanggal_cuti, lama_cuti,keterangan
       )
     
-      res.status(200).json({ newCuti })
+      res.status(200).json({
+        status:"success", 
+        newCuti })
     } catch (error) {
       if (error instanceof InvariantError) {
         return res.status(400).json({
