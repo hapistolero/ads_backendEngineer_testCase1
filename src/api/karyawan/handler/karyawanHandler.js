@@ -24,7 +24,9 @@ class KaryawanHandler{
         fieldName = 'Nomor Induk'
       }
       const allKaryawan = await this._karyawan.getAllKaryawan(fieldName)
-      res.status(200).json({karyawan:allKaryawan})
+      res.status(200).json({
+        status:'success',
+        karyawan:allKaryawan})
     } catch (error) {
       if (error instanceof InvariantError) {
         return res.status(400).json({
@@ -54,7 +56,9 @@ class KaryawanHandler{
     try {
       const {nomor_induk} = req.params
       const karyawan = await this._karyawan.getKaryawanAndCutiByNomorInduk(nomor_induk)
-      res.status(200).json({karyawan})
+      res.status(200).json({
+        status:'success',
+        karyawan})
     } catch (error) {
       if (error instanceof InvariantError) {
         return res.status(400).json({
@@ -95,7 +99,9 @@ class KaryawanHandler{
         nama, alamat, tanggal_lahir, tanggal_bergabung
       )
     
-      res.status(200).json({ newKaryawan })
+      res.status(200).json({ 
+        status:'success',
+        newKaryawan })
     } catch (error) {
       if (error instanceof InvariantError) {
         return res.status(400).json({
